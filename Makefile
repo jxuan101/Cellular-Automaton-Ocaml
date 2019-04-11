@@ -1,4 +1,3 @@
-
 all: ca
 
 ca: main.ml 

@@ -1,3 +1,12 @@
+
+(*removes the head element from a list*)
+let cut x = 
+  match x with
+  | [] -> []
+  | h::t -> t
+
+
+
 (* Parses a string to a list of ints. *)
 let list_of_string str =
   let rec ls_of_string str acc =
@@ -45,6 +54,20 @@ let next ls =
 
 (* main *)
 let () =
+  (* get command line arguments into a list*)
+  let argv_list_original = Array.to_list Sys.argv in 
+  let cleaned_list = cut argv_list_original in
+  (* let numGen = 8 in *)
+
+  let list_len = List.length cleaned_list in
+  if list_len = 0 
+    then Printf.printf "usage: ./ca numOfGenerations\n" 
+  else 
+    (* Printf.printf "%s\n" (List.nth cleaned_list 0); *)
+    let numGen = int_of_string(List.nth cleaned_list 0) in
+  
+
+
   let img = Image.create_rgb ~alpha:false ~max_val:255 50 50 in
 
   (* retrieve generation 0 from txt.file *)
@@ -54,18 +77,18 @@ let () =
   let f x y =
     match y with
     | 0 -> ()
-    | 1 -> Image.write_rgb img x 0 255 0 0
+    | 1 -> Image.write_rgb img x 0 (Random.int 255) (Random.int 255) (Random.int 255)
     | _ -> ()
   in
   List.iteri f genzero;
 
   (* draw 8 generations after generation 0 *)
   let rec draw_gens n ls =
-    if (n < 9) then let genk = List.rev(next ls) in
+    if (n < 40) then let genk = List.rev(next ls) in
     let f x y =
       match y with
       | 0 -> ()
-      | 1 -> Image.write_rgb img x n 255 0 0
+      | 1 -> Image.write_rgb img x n (Random.int 255) (Random.int 255) (Random.int 255)
       | _ -> ()
     in
     List.iteri f genk; draw_gens (n+1) genk
