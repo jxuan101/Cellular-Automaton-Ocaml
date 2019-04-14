@@ -54,6 +54,7 @@ let next ls =
 
 (* main *)
 let () =
+
   (* get command line arguments into a list*)
   let argv_list_original = Array.to_list Sys.argv in 
   let cleaned_list = cut argv_list_original in
