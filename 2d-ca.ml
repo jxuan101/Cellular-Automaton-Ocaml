@@ -87,12 +87,39 @@ let insert_into_map ls =
 		)
 	) ls m 0
 
+let countNeighbors r c oldGen =
+	let count = 0 
+	|> (+) (M.find (r-1,c-1) oldGen)
+	|> (+) (M.find (r,c-1) oldGen)
+	|> (+) (M.find (r+1,c-1) oldGen)
+	|> (+) (M.find (r-1,c) oldGen)
+	|> (+) (M.find (r+1,c) oldGen)
+	|> (+) (M.find (r-1,c+1) oldGen)
+	|> (+) (M.find (r,c+1) oldGen)
+	|> (+) (M.find (r+1,c+1) oldGen)
+	in count
+
+
 let nextGen oldGen rowSz colSz =
 	let nextMap = M.empty in
 	M.fold (fun (r,c) value nextMap ->
 		if (r > 0 && r < (rowSz-1) && c > 0 && c < (colSz-1)) then (
-			M.add (r,c) value nextMap
+			(* count neighbors *)
+			let neighbors = countNeighbors r c oldGen in 
+			if (neighbors > 0) then( 
+				(* Printf.printf "# of neighbors @ (%i, %i) -> %i\n" (r) (c) (neighbors); *)
+				if (value = 1 && neighbors < 2) then M.add (r,c) 0 nextMap else 
+				if (value = 1 && neighbors > 3) then M.add (r,c) 0 nextMap else
+				if (value = 0 && neighbors = 3) then M.add (r,c) 1 nextMap else
+				(M.add (r,c) value nextMap)
+
+			) else (
+				M.add (r,c) value nextMap
+				);
+			
+
 		)else(
+			(* Printf.printf "[OUT OF BOUNDS](%i, %i) -> %i\n" r c value; *)
 			M.add (r,c) value nextMap
 		)
 	) oldGen nextMap
@@ -125,7 +152,7 @@ let () =
 
 	let rowSz = 50 in 
 	let colSz = 50 in 
-	let numGen = 5 in 
+	let numGen = 100 in 
 
 	
 	(* Build seed generation *)
