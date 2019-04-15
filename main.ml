@@ -84,17 +84,17 @@ let () =
   List.iteri f genzero;
 
   (* draw 8 generations after generation 0 *)
-  let rec draw_gens n ls =
-    if (n < 40) then let genk = List.rev(next ls) in
+  let rec draw_gens n ls numGen =
+    if (n < numGen) then let genk = List.rev(next ls) in
     let f x y =
       match y with
       | 0 -> ()
       | 1 -> Image.write_rgb img x n (Random.int 255) (Random.int 255) (Random.int 255)
       | _ -> ()
     in
-    List.iteri f genk; draw_gens (n+1) genk
+    List.iteri f genk; draw_gens (n+1) genk numGen
   in
-  draw_gens 1 genzero;
+  draw_gens 1 genzero numGen;
 
   (* create the image *)
   ImageLib.writefile "output.png" img;
