@@ -10,9 +10,6 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 
 
 ### Examples
-**No Rules**
-
-![Blurry Example](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/no_rules_example.gif?raw=true)	
 
 **Conway's Simple Rules aka Butterfly**
 
