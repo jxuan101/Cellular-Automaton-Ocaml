@@ -6,5 +6,5 @@ two_ca: 2d-ca.ml
 	ocamlfind ocamlopt -package imagelib -linkpkg -o two_ca 2d-ca.ml
 
 clean:
-	-rm ca *.o *.cmx *.cmi
-	-rm two_ca *.o *.cmx *.cmi
+	-rm ca two_ca *.o *.cmx *.cmi
+	
