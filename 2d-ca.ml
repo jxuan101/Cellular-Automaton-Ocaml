@@ -19,7 +19,7 @@ let lines_of_file filename =
 
 let draw row col state img =
 	match state with
-	  	| 0 -> ()
+	  	| 0 -> Image.write_rgb img col row 0 0 0
 	  	| 1 -> Image.write_rgb img col row (Random.int 255) (Random.int 255) (Random.int 255)
 	  	| _ -> () 
 
