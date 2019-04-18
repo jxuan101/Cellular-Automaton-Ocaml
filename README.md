@@ -17,10 +17,12 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 **Conway's 3 Simple Rules**
 
 **Butterfly**
+
 ![Conway Butterfly](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/2d-conway.gif?raw=true)
 
 
 **Glider**
+
 ![Conway Glider](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/2d-glider.gif?raw=true)
 
 
