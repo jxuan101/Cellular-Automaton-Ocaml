@@ -108,10 +108,13 @@ let nextGen oldGen rowSz colSz =
 			let neighbors = countNeighbors r c oldGen in 
 			if (neighbors > 0) then( 
 				(* Printf.printf "# of neighbors @ (%i, %i) -> %i\n" (r) (c) (neighbors); *)
-				if (value = 1 && neighbors < 2) then M.add (r,c) 0 nextMap else 
-				if (value = 1 && neighbors > 3) then M.add (r,c) 0 nextMap else
-				if (value = 0 && neighbors = 3) then M.add (r,c) 1 nextMap else
-				(M.add (r,c) value nextMap)
+				if (value = 1 && neighbors < 2) then 
+					M.add (r,c) 0 nextMap 
+				else if (value = 1 && neighbors > 3) then M.add (r,c) 0 nextMap else
+				if (value = 0 && neighbors = 3) then 
+					M.add (r,c) 1 nextMap 
+				else
+					(M.add (r,c) value nextMap)
 
 			) else (
 				M.add (r,c) value nextMap
