@@ -1,3 +1,16 @@
+(*
+	Author: Kent Feng
+	Implementation of Conway's Game of Life in two dimensions.
+	Specs:
+	Default size: 		  50 x 50 pixels
+	Seed generation file: 2d_seed.txt
+*)
+(*removes the head element from a list*)
+let cut x = 
+  match x with
+  | [] -> []
+  | h::t -> t
+
 (* file reading functions *)
 let input_line_opt ic =
 	try Some (input_line ic)
@@ -153,9 +166,22 @@ let rec drawRemainder currentGen img numGen rSz cSz inc =
 
 let () =
 
+	(* get command line arguments into a list*)
+  	let argv_list_original = Array.to_list Sys.argv in 
+  	let cleaned_list = cut argv_list_original in
+  	
+
+  	let list_len = List.length cleaned_list in
+  	if list_len = 0 
+    	then Printf.printf "usage: ./two_ca <numOfGenerations>\n" 
+  	else 
+    	let numGen = int_of_string(List.nth cleaned_list 0) in
+    	(* if(numGen <= 0) then let numGen = 50 in *)
+
+
 	let rowSz = 50 in 
 	let colSz = 50 in 
-	let numGen = 100 in 
+	
 
 	
 	(* Build seed generation *)
