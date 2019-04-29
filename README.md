@@ -33,6 +33,11 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 
 **Conway's 3 Simple Rules**
 
+**Immortal Butteryfly**
+
+![Immortal Butterfly](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/2d-conway.gif?raw=true)
+
+
 **Glider & Oscillator**
 
 ![Conway Glider](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/2d-glider.gif?raw=true)
