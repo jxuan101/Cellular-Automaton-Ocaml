@@ -37,7 +37,9 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 
 ![Conway Glider](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/2d-glider.gif?raw=true)
 
+
 **Colliding Gliders**
+
 ![Conway Glider](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/exploding_gliders.gif?raw=true)
 
 
