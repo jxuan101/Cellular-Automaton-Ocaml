@@ -5,13 +5,16 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 ### Build Instructions
 1. `make all`
 2. edit 2d_seed.txt to desired starting generation
-3. `./two_ca <number of generations>`
+3. create a new directory "generations" if not already existing
+3. `./two_ca <number of generations> <survive> <born>`
 4. output of generations will be in `./generations` directory
 
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
 1. `rowSz` and `colSz` variables located in the `two_ca.ml` file.
 2. create a bitmap of the desired size `rowSz` and `colSz` 
+3. the S/B family format is for example, 23/3 read as survive if 2 or 3 neighbors and born if 3 neighbors
+4. S and B could both be multiple digits
 
 #### Clear Generations
 `make clear` - removes all the png files in the `./generations` folder.
@@ -28,6 +31,8 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 **April 15, 2019** - 2d CA implemented with rules by Conway.
 
 **April 29, 2019** - updating readme and utilizing command line arguments.
+
+**May 1, 2019** - 2d CA now accepts custom user input of rules in S/B format
 
 ### Examples
 
@@ -46,5 +51,8 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 **Colliding Gliders**
 
 ![Conway Glider](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/exploding_gliders.gif?raw=true)
+
+**Maze**
+![Maze](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/2d-ca/12345-3.gif?raw=true)
 
 
