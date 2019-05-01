@@ -6,8 +6,9 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 1. `make all`
 2. edit 2d_seed.txt to desired starting generation
 3. create a new directory "generations" if not already existing
-3. `./two_ca <number of generations> <survive> <born>`
-4. output of generations will be in `./generations` directory
+4. `./two_ca <number of generations> <survive> <born>`
+4b. For example, ./two_ca 50 23 3 produces a c.a. with 50 generations with conway 23/3 rules.
+5. output of generations will be in `./generations` directory
 
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
