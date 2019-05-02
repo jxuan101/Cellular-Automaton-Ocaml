@@ -9,8 +9,11 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 4. output of generations will be in `./generations` directory
 
 ### Formats
-1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3.
-  `./two_ca 50 sb 23/3`
+1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3. Some examples are
+  `./two_ca 80 sb 23/3`
+  `./two_ca 80 sb 12345/3`
+  `./two_ca 80 sb 238/357`
+  `./two_ca 80 sb 1358/357`
 2. marg - Incomplete. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list.
   `./two_ca 50 marg 0,8,4,3,2,5,9,6,1,6,10,11,12,13,14,15`
   
