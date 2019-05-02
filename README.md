@@ -38,6 +38,8 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 
 **May 1, 2019** - 2d CA now accepts custom user input of rules in S/B format
 
+**May 2, 2019** - modularized the 2d CA and allowed for multiple formats, incomplete Margulos
+
 ### Examples
 
 **Conway's 3 Simple Rules**
