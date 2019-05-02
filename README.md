@@ -5,16 +5,20 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 ### Build Instructions
 1. `make all`
 2. edit 2d_seed.txt to desired starting generation
-3. create a new directory "generations" if not already existing
-4. `./two_ca <number of generations> <survive> <born>` For example, ./two_ca 50 23 3 produces a c.a. with 50 generations with conway 23/3 rules.
-5. output of generations will be in `./generations` directory
+3. `./two_ca <number of generations> <format> <rule>` For example, ./two_ca 50 sb 23/3 produces a c.a. with 50 generations using the S/B format and 23/3 rules.
+4. output of generations will be in `./generations` directory
 
+### Formats
+1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3.
+  `./two_ca 50 sb 23/3`
+2. marg - Implemented. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed.
+  `./two_ca 50 marg 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15`
+  
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
 1. `rowSz` and `colSz` variables located in the `two_ca.ml` file.
 2. create a bitmap of the desired size `rowSz` and `colSz` 
-3. the S/B family format is for example, 23/3 read as survive if 2 or 3 neighbors and born if 3 neighbors
-4. S and B could both be multiple digits
+3. S and B could both be multiple digits
 
 #### Clear Generations
 `make clear` - removes all the png files in the `./generations` folder.
