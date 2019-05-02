@@ -32,6 +32,7 @@ let insert_into_map ls =
 
 (* Returns the neighbor count. *)
 let countNeighbors r c oldGen =
+  (* Printf.printf "(%i, %i)\n" r c; *)
 	let count = 0
 	|> (+) (M.find (r-1,c-1) oldGen)
 	|> (+) (M.find (r,c-1) oldGen)
@@ -53,11 +54,11 @@ let rec compare neighbors ls =
 let nextGen oldGen rowSz colSz survive born =
 	let nextMap = M.empty in
 	M.fold (fun (r,c) value nextMap ->
-		if (r > 0 && r < (rowSz-1) && c > 0 && c < (colSz-1)) then (
+		if (r > 0 && r < (rowSz-2) && c > 0 && c < (colSz-2)) then (
 			(* count neighbors *)
 			let neighbors = countNeighbors r c oldGen in
 			if (neighbors > 0) then(
-				(* Printf.printf "# of neighbors @ (%i, %i) -> %i\n" (r) (c) (neighbors); *)
+				(*Printf.printf "# of neighbors @ (%i, %i) -> %i -> %i\n" (r) (c) (neighbors);*)
 				if (value = 1 && (compare neighbors survive) = true) then
 					M.add (r,c) value nextMap
 				else if (value = 1 && (compare neighbors survive) = false) then

@@ -33,16 +33,14 @@ let lines_of_file filename =
 (* Parses a string to a list of ints. *)
 let list_of_string str =
   let rec ls_of_string str acc =
+    if String.length str > 0 then
+    (
     match str.[0] with
-    | '0' -> if ((String.length str) > 1) then
-      ls_of_string (String.sub str 1 ((String.length str)-1)) (0::acc)
-      else (0::acc)
-    | '1' -> if ((String.length str) > 1) then
-      ls_of_string (String.sub str 1 ((String.length str)-1)) (1::acc)
-      else (1::acc)
-    | _ -> if ((String.length str) > 1) then
-      ls_of_string (String.sub str 1 ((String.length str)-1)) (0::acc)
-      else (0::acc)
+    | '0' -> ls_of_string (String.sub str 1 ((String.length str)-1)) (0::acc)
+    | '1' -> ls_of_string (String.sub str 1 ((String.length str)-1)) (1::acc)
+    | _ -> ls_of_string (String.sub str 1 ((String.length str)-1)) (0::acc)
+    )
+    else acc
   in
   ls_of_string str []
 
@@ -67,7 +65,7 @@ let rec print_int_array ls =
 
 (* MAIN *)
 let () =
-
+   
 	(* get command line arguments into a list*)
   	let argv_list_original = Array.to_list Sys.argv in
   	let cleaned_list = cut argv_list_original in
