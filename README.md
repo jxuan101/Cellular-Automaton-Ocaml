@@ -11,8 +11,8 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 ### Formats
 1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3.
   `./two_ca 50 sb 23/3`
-2. marg - Implemented. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed.
-  `./two_ca 50 marg 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15`
+2. marg - Incomplete. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list.
+  `./two_ca 50 marg 0,8,4,3,2,5,9,6,1,6,10,11,12,13,14,15`
   
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
