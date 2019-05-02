@@ -55,6 +55,6 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 
 **Maze**
 
-![Maze](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/12345-3.gif?raw=true)
+![Maze](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/2d-maze-12345-3.gif?raw=true)
 
 
