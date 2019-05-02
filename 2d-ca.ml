@@ -118,4 +118,5 @@ let () =
 
 				Marg.drawRemainder genZero img (numGen-1) rowSz colSz 1 rule;
 				)
+			| _ -> ()
 	)

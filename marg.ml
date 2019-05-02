@@ -66,56 +66,57 @@ let compare2 square =
   else if square = fourteenth then 14
   else 15
 
-(* compares the amount of neighbors to survive or born *)
+(* compares the square to the 16 states. *)
 let compare square rule r c nextMap =
 	let index = compare2 square in
-  let change = List.nth rule index in
-  match change with
-  | "0" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap;
+  match List.nth rule index with
+  | "0" -> (M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap)
   | "1" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap
   | "2" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap
   | "3" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap
   | "4" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap
   | "5" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap
   | "6" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap
   | "7" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 0 nextMap
   | "8" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap
   | "9" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap
   | "10" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap
   | "11" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 1 nextMap
   | "12" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap
   | "13" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 0 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap
   | "14" -> M.add (r,c) 0 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap;
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap
   | "15" -> M.add (r,c) 1 nextMap; M.add (r,c+1) 1 nextMap;
-           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap;
-
+           M.add (r+1,c) 1 nextMap; M.add (r+1,c+1) 1 nextMap
+	| _ -> M.add (r,c) 0 nextMap; M.add (r,c+1) 0 nextMap;
+           M.add (r+1,c) 0 nextMap; M.add (r+1,c+1) 0 nextMap
 
 (* Generating the next generation according to rule given. *)
 let nextGen oldGen rowSz colSz rule =
 	let nextMap = M.empty in
 	M.fold (fun (r,c) value nextMap ->
-      if ((r%2) = 0 && (c%2) = 0) then
-      (
-  			let square = [value;(M.find (r,c+1) oldGen);(M.find (r+1,c) oldGen);
-          (M.find (r+1,c+1) oldGen)] in
-        (compare square rule r c nextMap)
-      )
-      else ()
+      if (r > 0  && r < (rowSz-1) && c > 0 &&  c < (colSz-1)) then
+			(
+  			let square = [value;M.find (r,c+1) oldGen;M.find (r+1,c) oldGen;
+          M.find (r+1,c+1) oldGen] in
+				compare square rule r c nextMap
+				)
+				else M.add (r,c) value nextMap
+
 	) oldGen nextMap
 
 (* Draws and outputs a given generation. *)
@@ -130,7 +131,7 @@ let drawGen gen img numGen =
 	let final_string = output_destination ^ num ^ file_extension in
 
 	(* create the image *)
-	ImageLib.writefile final_string img;
+	ImageLib.writefile final_string img
 
 (* Generates the remaining generations. *)
 let rec drawRemainder currentGen img numGen rSz cSz inc rule =
@@ -140,7 +141,7 @@ let rec drawRemainder currentGen img numGen rSz cSz inc rule =
 		drawGen newGen img inc;
 		drawRemainder newGen img numGen rSz cSz (inc+1) rule
 	)
-  else ()
+  else()
 
 (* Parses the rules of Margulos to a list containing the 16 mappings. *)
 let parser x =
