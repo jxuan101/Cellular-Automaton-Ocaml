@@ -15,7 +15,7 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
   `./two_ca 80 sb 238/357`
   `./two_ca 80 sb 1358/357`
 2. marg - Incomplete. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list.
-  `./two_ca 50 marg 0,8,4,3,2,5,9,6,1,6,10,11,12,13,14,15`
+  `./two_ca 50 marg 0,8,4,3,2,5,9,7,1,6,10,11,12,13,14,15`
   
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
