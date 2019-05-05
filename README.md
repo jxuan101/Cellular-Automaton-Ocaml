@@ -4,18 +4,23 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 
 ### Build Instructions
 1. `make all`
-2. edit 2d_seed.txt to desired starting generation
-3. `./two_ca <number of generations> <format> <rule>` For example, ./two_ca 50 sb 23/3 produces a c.a. with 50 generations using the S/B format and 23/3 rules.
+2. edit 2d_seed.txt to desired starting generation, also edit size in ca2d.ml for your chosen format.
+3. `./2dca <number of generations> <format> <rule>` For example, ./two_ca 50 sb 23/3 produces a c.a. with 50 generations using the S/B format and 23/3 rules.
 4. output of generations will be in `./generations` directory
 
 ### Formats
-1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3. Some examples are
-  `./two_ca 80 sb 23/3`
-  `./two_ca 80 sb 12345/3`
-  `./two_ca 80 sb 238/357`
-  `./two_ca 80 sb 1358/357`
-2. marg - Incomplete. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list.
-  `./two_ca 50 marg 0,8,4,3,2,5,9,7,1,6,10,11,12,13,14,15`
+Click below for the cellular automaton rule lexicon:
+http://psoup.math.wisc.edu/mcell/ca_rules.html
+
+1. sb - Implemented. Rules in the S/B format are for example, 23/3 meaning survive if 2 or 3 neighbors, born if 3. Some examples are <br/>
+  `./2dca 80 sb 23/3` -Conway's Life <br/>
+  `./2dca 80 sb 12345/3` -Maze <br/>
+  `./2dca 80 sb 238/357` -Pseudo Life <br/>
+  `./2dca 80 sb 1358/357` -Amoeba <br/>
+  
+2. marg - Implemented. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list. <br/>
+  `./2dca 50 marg 0,8,4,3,2,5,9,7,1,6,10,11,12,13,14,15` -BBM <br/>
+  `./2dca 40 marg 0,4,8,12,4,12,12,13,8,12,12,14,12,13,14,15` -Sand (Try with sand.txt) <br/>
   
 #### Notes
 In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
@@ -42,6 +47,8 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 **May 1, 2019** - 2d CA now accepts custom user input of rules in S/B format
 
 **May 2, 2019** - modularized the 2d CA and allowed for multiple formats, incomplete Margulos
+
+**May 4, 2019** - completed and implemented Margulos format
 
 ### Examples
 
