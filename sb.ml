@@ -1,9 +1,4 @@
-(* Draws an image. *)
-let draw row col state img =
-	match state with
-	  	| 0 -> Image.write_rgb img col row 255 255 255
-	  	| 1 -> Image.write_rgb img col row 0 0 0
-	  	| _ -> ()
+
 
 (* int pair struct*)
 module IntPair = struct
@@ -80,9 +75,9 @@ let nextGen oldGen rowSz colSz survive born =
 	) oldGen nextMap
 
 (* Draws and outputs a given generation. *)
-let drawGen gen img numGen =
+let drawGen gen img numGen mode drawfn =
 	M.iter (fun (r,c) value ->
-  		draw r c value img
+  		drawfn r c value img mode
   	) gen;
 
 	let output_destination = "./generations/gen_" in
@@ -94,12 +89,12 @@ let drawGen gen img numGen =
 	ImageLib.writefile final_string img
 
 (* Generates the remaining generations. *)
-let rec drawRemainder currentGen img numGen rSz cSz inc survive born =
+let rec drawRemainder currentGen img numGen rSz cSz inc survive born mode drawfn =
 	if (numGen > 0 && inc <= numGen) then (
 		(* create a new generation *)
 		let newGen = nextGen currentGen rSz cSz survive born in
-		drawGen newGen img inc;
-		drawRemainder newGen img numGen rSz cSz (inc+1) survive born
+		drawGen newGen img inc mode (drawfn);
+		drawRemainder newGen img numGen rSz cSz (inc+1) survive born mode (drawfn)
 	)else(
 		()
 	)
