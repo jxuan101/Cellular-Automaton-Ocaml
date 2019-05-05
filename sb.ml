@@ -1,8 +1,8 @@
 (* Draws an image. *)
 let draw row col state img =
 	match state with
-	  	| 0 -> Image.write_rgb img col row 0 0 0
-	  	| 1 -> Image.write_rgb img col row (Random.int 255) (Random.int 255) (Random.int 255)
+	  	| 0 -> Image.write_rgb img col row 255 255 255
+	  	| 1 -> Image.write_rgb img col row 0 0 0
 	  	| _ -> ()
 
 (* int pair struct*)
@@ -32,7 +32,7 @@ let insert_into_map ls =
 
 (* Returns the neighbor count. *)
 let countNeighbors r c oldGen =
-  (* Printf.printf "(%i, %i)\n" r c; *)
+  Printf.printf "(%i, %i)\n" r c; 
 	let count = 0
 	|> (+) (M.find (r-1,c-1) oldGen)
 	|> (+) (M.find (r,c-1) oldGen)
@@ -54,7 +54,7 @@ let rec compare neighbors ls =
 let nextGen oldGen rowSz colSz survive born =
 	let nextMap = M.empty in
 	M.fold (fun (r,c) value nextMap ->
-		if (r > 0 && r < (rowSz-2) && c > 0 && c < (colSz-2)) then (
+		if (r > 0 && r < (rowSz-1) && c > 0 && c < (colSz-1)) then (
 			(* count neighbors *)
 			let neighbors = countNeighbors r c oldGen in
 			if (neighbors > 0) then(
@@ -107,7 +107,11 @@ let rec drawRemainder currentGen img numGen rSz cSz inc survive born =
 (* Converts an int to a list of its digits. *)
 let digits_of_int x =
   let rec digits x acc =
-  	if x < 10 then x::acc
+  	if x < 10 then 
+  	(
+  	  if x != 9 then x::acc 
+  	  else acc
+  	)
   	else digits (x/10) ((x mod 10)::acc) in
   digits x []
 
