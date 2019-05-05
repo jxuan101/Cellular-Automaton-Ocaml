@@ -71,12 +71,13 @@ let () =
   	let cleaned_list = cut argv_list_original in
 
   	let list_len = List.length cleaned_list in
-  	if list_len != 3
-    	then Printf.printf "usage: ./2dca <numOfGenerations> <format> <rule>\n"
+  	if list_len != 4
+    	then Printf.printf "usage: ./2dca <numOfGenerations> <format> <rule> <seedfile>\n"
   	else
 		(
 			let format = List.nth cleaned_list 1 in
 			let numGen = int_of_string(List.nth cleaned_list 0) in
+			let seedFileName = List.nth cleaned_list 3 in
 			match format with
 			| "sb" -> (
 				let rule = Sb.parser (List.nth cleaned_list 2) in
@@ -85,32 +86,46 @@ let () =
 				let b = int_of_string(List.nth rule 1) in
 				let born = Sb.digits_of_int b in
 
-				let rowSz = 50 in
-				let colSz = 50 in
+				(* let rowSz = 50 in
+				let colSz = 50 in *)
 
-				(* Build seed generation *)
-				let img = Image.create_rgb ~alpha:false ~max_val:255 colSz rowSz in
+				
 
 			  (* retrieve and draw generation 0 from txt.file *)
-			  let lines = lines_of_file "2d_seed.txt" in
+			  let lines = lines_of_file seedFileName in
 			  let newLines = array_stuffer lines in
+			  let firstRow = List.nth newLines 0 in
+			  let colLen = List.length newLines in
+			  let rowLen = List.length firstRow in 
 			  let genZero = Sb.insert_into_map newLines in
-			  Sb.drawGen genZero img 0;
+			  
+			  Printf.printf "row len: %i\n col len: %i" rowLen colLen;
 
-			  Sb.drawRemainder genZero img (numGen) rowSz colSz 1 survive born;
+			  (* Build seed generation *)
+				let img = Image.create_rgb ~alpha:false ~max_val:255 colLen rowLen in
+
+			  Sb.drawGen genZero img 0;	
+
+			  Sb.drawRemainder genZero img (numGen) rowLen colLen 1 survive born;
 				)
 			| "marg" -> (
 				let rule = Marg.parser (List.nth cleaned_list 2) in
-				let rowSz = 30 in
-				let colSz = 10 in
+				(* let rowSz = 30 in
+				let colSz = 10 in *)
       
-				(* Build seed generation *)
-				let img = Image.create_rgb ~alpha:false ~max_val:255 colSz rowSz in
+				
 
 				(* retrieve and draw generation 0 from txt.file *)
-			  let lines = lines_of_file "2d_seed.txt" in
+			  let lines = lines_of_file seedFileName in
 			  let newLines = array_stuffer lines in
+			  let firstRow = List.nth newLines 0 in
+			  let colSz = List.length newLines in
+			  let rowSz = List.length firstRow in 
 			  let genZero = Marg.insert_into_map newLines in
+
+			  (* Build seed generation *)
+			  let img = Image.create_rgb ~alpha:false ~max_val:255 colSz rowSz in
+
 			  Marg.drawGen genZero img 0;
     
 				Marg.drawRemainder genZero img (numGen) rowSz colSz 1 rule;
