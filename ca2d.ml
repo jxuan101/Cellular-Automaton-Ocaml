@@ -1,9 +1,6 @@
 (*
 	Author: Kent Feng ,Jin Huai Xuan
 	Implementation of Cellular Automatons in two dimensions.
-	Specs:
-	Default size: 		  50 x 50 pixels
-	Seed generation file: 2d_seed.txt
 *)
 (*removes the head element from a list*)
 let cut x =
@@ -63,6 +60,38 @@ let rec print_int_array ls =
 	| [] -> print_endline ""
 
 
+(* Draws an image. *)
+let draw row col state img mode =
+	match mode with 
+	| "inverted" ->(
+					match state with
+					  	| 0 -> Image.write_rgb img col row 0 0 0
+					  	| 1 -> Image.write_rgb img col row 255 255 255
+					  	| _ -> ()
+
+					)
+	| "poop" -> (
+					match state with
+					  	| 0 -> Image.write_rgb img col row 255 255 255
+					  	| 1 -> Image.write_rgb img col row 101 67 33
+					  	| _ -> ()
+
+	)
+	| "rainbow" -> (
+					match state with
+					  	| 0 -> Image.write_rgb img col row 255 255 255
+					  	| 1 -> Image.write_rgb img col row (Random.int 255) (Random.int 255) (Random.int 255)
+					  	| _ -> ()
+	)
+	| _ -> (
+					match state with
+					  	| 0 -> Image.write_rgb img col row 255 255 255
+					  	| 1 -> Image.write_rgb img col row 0 0 0
+					  	| _ -> ()
+
+	)
+
+
 (* MAIN *)
 let () =
    
@@ -71,24 +100,21 @@ let () =
   	let cleaned_list = cut argv_list_original in
 
   	let list_len = List.length cleaned_list in
-  	if list_len != 4
-    	then Printf.printf "usage: ./2dca <numOfGenerations> <format> <rule> <seedfile>\n"
+  	if list_len != 5
+    	then Printf.printf "usage: ./2dca <numOfGenerations> <colorMode> <seedfile> <rule> <format>\n"
   	else
 		(
-			let format = List.nth cleaned_list 1 in
+			let format = List.nth cleaned_list 3 in
 			let numGen = int_of_string(List.nth cleaned_list 0) in
-			let seedFileName = List.nth cleaned_list 3 in
+			let seedFileName = List.nth cleaned_list 2 in
+			let drawMode = List.nth cleaned_list 1 in 
 			match format with
 			| "sb" -> (
-				let rule = Sb.parser (List.nth cleaned_list 2) in
+				let rule = Sb.parser (List.nth cleaned_list 4) in
 				let s = int_of_string(List.nth rule 0) in
 				let survive = Sb.digits_of_int s in
 				let b = int_of_string(List.nth rule 1) in
 				let born = Sb.digits_of_int b in
-
-				(* let rowSz = 50 in
-				let colSz = 50 in *)
-
 				
 
 			  (* retrieve and draw generation 0 from txt.file *)
@@ -99,22 +125,19 @@ let () =
 			  let rowLen = List.length firstRow in 
 			  let genZero = Sb.insert_into_map newLines in
 			  
-			  Printf.printf "row len: %i\n col len: %i" rowLen colLen;
+			  Printf.printf "Specifications\nSeed Filename: %s\nFormat: s/b\nRule: (s,b) (%i,%i)\nGenerations: %i\nDetected Size\nrow len: %i\ncol len: %i\n" (seedFileName) (s) (b) (numGen) (rowLen) (colLen);
+			  
 
 			  (* Build seed generation *)
-				let img = Image.create_rgb ~alpha:false ~max_val:255 colLen rowLen in
+				let img = Image.create_rgb ~alpha:false ~max_val:255 rowLen colLen in
 
-			  Sb.drawGen genZero img 0;	
+			  Sb.drawGen genZero img 0 (drawMode) (draw);	
 
-			  Sb.drawRemainder genZero img (numGen) rowLen colLen 1 survive born;
+			  Sb.drawRemainder genZero img (numGen) colLen rowLen 1 survive born (drawMode) (draw);
 				)
 			| "marg" -> (
-				let rule = Marg.parser (List.nth cleaned_list 2) in
-				(* let rowSz = 30 in
-				let colSz = 10 in *)
+				let rule = Marg.parser (List.nth cleaned_list 4) in
       
-				
-
 				(* retrieve and draw generation 0 from txt.file *)
 			  let lines = lines_of_file seedFileName in
 			  let newLines = array_stuffer lines in
@@ -123,12 +146,19 @@ let () =
 			  let rowSz = List.length firstRow in 
 			  let genZero = Marg.insert_into_map newLines in
 
-			  (* Build seed generation *)
-			  let img = Image.create_rgb ~alpha:false ~max_val:255 colSz rowSz in
+			   Printf.printf "Specifications\nSeed Filename: %s\nFormat: marg\nGenerations: %i\nDetected Size\nrow len: %i\ncol len: %i\nRule: " seedFileName numGen rowSz colSz;
 
-			  Marg.drawGen genZero img 0;
+			   List.map (fun r -> Printf.printf "%s " r) rule;
+
+			   print_endline "";
+
+
+			  (* Build seed generation *)
+			  let img = Image.create_rgb ~alpha:false ~max_val:255 rowSz colSz in
+
+			  Marg.drawGen genZero img 0 (drawMode) (draw);
     
-				Marg.drawRemainder genZero img (numGen) rowSz colSz 1 rule;
+				Marg.drawRemainder genZero img (numGen) colSz rowSz 1 rule (drawMode) (draw);
 				)
 			| _ -> ()
 	)
