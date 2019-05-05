@@ -148,9 +148,9 @@ let () =
 
 			   Printf.printf "Specifications\nSeed Filename: %s\nFormat: marg\nGenerations: %i\nDetected Size\nrow len: %i\ncol len: %i\nRule: " seedFileName numGen rowSz colSz;
 
-			   List.map (fun r -> Printf.printf "%s " r) rule;
+			   List.iter (fun r -> Printf.printf "%s " r) rule;
 
-			   print_endline "";
+			   print_newline ();
 
 
 			  (* Build seed generation *)
