@@ -32,7 +32,7 @@ let insert_into_map ls =
 
 (* Returns the neighbor count. *)
 let countNeighbors r c oldGen =
-  Printf.printf "(%i, %i)\n" r c; 
+  (* Printf.printf "(%i, %i)\n" r c;  *)
 	let count = 0
 	|> (+) (M.find (r-1,c-1) oldGen)
 	|> (+) (M.find (r,c-1) oldGen)

@@ -4,8 +4,8 @@ This is a group project on cellular automata inspired by Conway's Game Of Life w
 
 ### Build Instructions
 1. `make all`
-2. edit 2d_seed.txt to desired starting generation, also edit size in ca2d.ml for your chosen format.
-3. `./2dca <number of generations> <format> <rule>` For example, ./two_ca 50 sb 23/3 produces a c.a. with 50 generations using the S/B format and 23/3 rules.
+2. edit 2d_seed.txt to desired starting generation.
+3. `./2dca <number of generations> <format> <rule> <seed_file.txt>` For example, ./two_ca 50 sb 23/3 produces a c.a. with 50 generations using the S/B format and 23/3 rules.
 4. output of generations will be in `./generations` directory
 
 ### Formats
@@ -23,10 +23,7 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
   `./2dca 40 marg 0,4,8,12,4,12,12,13,8,12,12,14,12,13,14,15` -Sand (Try with sand.txt) <br/>
   
 #### Notes
-In order to have the size of the generation be `rowSz` by `colSz`, you must change two things:
-1. `rowSz` and `colSz` variables located in the `two_ca.ml` file.
-2. create a bitmap of the desired size `rowSz` and `colSz` 
-3. S and B could both be multiple digits
+1. S and B could both be multiple digits
 
 #### Clear Generations
 `make clear` - removes all the png files in the `./generations` folder.
@@ -49,6 +46,8 @@ In order to have the size of the generation be `rowSz` by `colSz`, you must chan
 **May 2, 2019** - modularized the 2d CA and allowed for multiple formats, incomplete Margulos
 
 **May 4, 2019** - completed and implemented Margulos format
+
+**May 4, 2019** - auto-detect generation size based on seed file which can be included by user prior to execution.
 
 ### Examples
 
