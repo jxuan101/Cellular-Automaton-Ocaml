@@ -21,13 +21,16 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
   
 2. marg - Implemented. Rules in the Margulos format are for example, 0;8;4;3;2;5;9;6;1;6;10;11;12;13;14;15. The MS,D prefix   is automatically assumed. Instead of using a semi-colon as a delimiter, our program uses a comma separated list. <br/>
   `./2dca 50 normal 2d_seed.txt marg 0,8,4,3,2,5,9,7,1,6,10,11,12,13,14,15` -BBM <br/>
-  `./2dca 40 poop 2d_seed.txt marg 0,4,8,12,4,12,12,13,8,12,12,14,12,13,14,15` -Sand (Try with sand.txt) <br/>
+  `./2dca 40 poop sand.txt marg 0,4,8,12,4,12,12,13,8,12,12,14,12,13,14,15` -Sand (Try with sand.txt) <br/>
   
 #### Notes
 1. S and B could both be multiple digits
 
 #### Clear Generations
 `make clear` - removes all the png files in the `./generations` folder.
+
+#### Convert PNG to GIF
+`convert -delay 15 -loop 0 ./generations/*.png caoutput.gif` - assuming you have png files in the generations folder and the ImageMagick library properly installed we can run this command to create a gif
 
 
 ### Timeline
@@ -75,4 +78,18 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
 
 ![Maze](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/2d-maze-12345-3.gif?raw=true)
 
+
+**Another Maze**
+
+![Another Maze](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/anothermaze.gif?raw=true)
+
+
+**Brown Sand**
+
+![Brown Sand](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/brownsand.gif?raw=true)
+
+
+**Pong Particles**
+
+![Pong Particles](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/pongesque.gif?raw=true)
 
