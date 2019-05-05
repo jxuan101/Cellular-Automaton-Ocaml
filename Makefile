@@ -1,15 +1,15 @@
-all: ca two_ca makeDir
+all: 1dca 2dca makeDir
 
 makeDir:
 	mkdir -p generations
 
-ca: main.ml 
-	ocamlfind ocamlopt -package imagelib -linkpkg -o ca main.ml
-two_ca: 	
-	ocamlfind ocamlopt -package imagelib -linkpkg -g -o two_ca str.cmxa sb.ml marg.ml 2d-ca.ml
+1dca: ca1d.ml 
+	ocamlfind ocamlopt -package imagelib -linkpkg -o 1dca ca1d.ml
+2dca: 	
+	ocamlfind ocamlopt -package imagelib -linkpkg -g -o 2dca str.cmxa sb.ml marg.ml ca2d.ml
 
 clean:
-	-rm ca two_ca *.o *.cmx *.cmi
+	-rm 1dca 2dca *.o *.cmx *.cmi
 
 clear:
 	-rm ./generations/*.png
