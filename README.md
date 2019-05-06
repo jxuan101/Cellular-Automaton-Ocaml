@@ -60,7 +60,7 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
 ### Report
 
 
-[Report Link](../blob/master/ca_report.pdf)
+[Report Link](https://github.com/ocamlca/Cellular-Automaton-Ocaml/blob/master/ca_report.pdf)
 
 
 ### Examples
