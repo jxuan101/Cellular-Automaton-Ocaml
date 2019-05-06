@@ -55,6 +55,14 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
 
 **May 5, 2019** - added some color options and specs output
 
+**May 5, 2019** - added report
+
+### Report
+
+
+[Report Link](../blob/master/ca_report.pdf)
+
+
 ### Examples
 
 **Conway's 3 Simple Rules**
