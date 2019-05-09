@@ -65,7 +65,7 @@ http://psoup.math.wisc.edu/mcell/ca_rules.html
 
 ### Examples
 
-**Conway's 3 Simple Rules**
+
 
 **Immortal Butteryfly**
 
